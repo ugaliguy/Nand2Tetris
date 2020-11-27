@@ -1,0 +1,14 @@
+/**
+ * 2-bit multiplexor: 
+ * for i = 0 and 1 out[i] = a[i] if sel == 0 
+ *                        b[i] if sel == 1
+ */
+
+CHIP Mux2 {
+    IN a[2], b[2], sel;
+    OUT out[2];
+
+    PARTS:
+    	Mux(a=a[0], b=b[0], sel=sel, out=out[0]);
+    	Mux(a=a[1], b=b[1], sel=sel, out=out[1]);
+}
