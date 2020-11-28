@@ -16,5 +16,15 @@ CHIP DMux4Way {
     OUT a, b, c, d;
 
     PARTS:
-    // Put your code here:
+    	/**
+    	 * sel[1] = 0 gives a or b
+    	 * sel[1] = 1 gives c or d
+    	 */
+    	DMux(in=in, sel=sel[1], a=OUTab, b=OUTcd);
+
+    	/**
+    	 * Use sel[0] to determine final output
+    	 */
+    	DMux(in=OUTab, sel=sel[0], a=a, b=b);
+    	DMux(in=OUTcd, sel=sel[0], a=c, b=d);
 }
