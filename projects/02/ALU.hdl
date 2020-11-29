@@ -54,8 +54,13 @@ CHIP ALU {
         And16(a=outnx, b=outny, out=xANDy);
         Mux16(a=xANDy, b=xPLUSy, sel=f, out=outf); // f input
 
+
         Not16(in=outf, out=outno);
         Mux16(a=outf, b=outno, sel=no, out=out);
+        Mux16(a=outf, b=outno, sel=no, out=out1);
 
+        Or16Way(in=out1, out=is0);
+        Not(in=is0, out=zr); // zr output
 
+        IsNegative16(in=out1, out=ng); // ng output
 }
