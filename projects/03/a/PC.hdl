@@ -16,5 +16,18 @@ CHIP PC {
     OUT out[16];
 
     PARTS:
-    // Put your code here:
+    	// Determine the values of reset, load, and inc
+    	// Or(a=reset, b=load, out=rl);
+    	// Or(a=rl, b=inc, out=rli);
+
+    	Inc16(in=copy, out=incOutput);
+
+    	// Recall that false is 0
+    	Mux16(a=loadInput, b=in, sel=load, out=resetInput);
+    	Mux16(a=resetInput, b=false, sel=reset, out=registerInput);
+    	Mux16(a=copy, b=incOutput, sel=inc, out=loadInput);
+
+    	Register(in=registerInput, load=true, out=copy, out=out);
+
+
 }
